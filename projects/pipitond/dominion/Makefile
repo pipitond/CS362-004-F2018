@@ -24,6 +24,40 @@ testAll: dominion.o testSuite.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
+unittestresults: dominion.c rngs.o unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c
+	gcc -o unittest1 unittest1.c dominion.c -g rngs.o $(CFLAGS)
+	./unittest1 &> unittestresults.out
+	gcov unittest1.c dominion.c -b >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o unittest2 unittest2.c -g dominion.c rngs.o $(CFLAGS)
+	./unittest2 >> unittestresults.out
+	gcov unittest2.c dominion.c -b >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o unittest3 unittest3.c -g dominion.c rngs.o $(CFLAGS)
+	./unittest3 >> unittestresults.out
+	gcov unittest3.c dominion.c -b >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o unittest4 unittest4.c -g dominion.c rngs.o $(CFLAGS)
+	./unittest4 >> unittestresults.out
+	gcov unittest4.c dominion.c -b >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o cardtest1 cardtest1.c -g dominion.c rngs.o $(CFLAGS)
+	./cardtest1 >> unittestresults.out
+	gcov cardtest1.c dominion.c -b >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o cardtest2 cardtest2.c -g dominion.c rngs.o $(CFLAGS)
+	./cardtest2 >> unittestresults.out
+	gcov cardtest2.c dominion.c -b >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o cardtest3 cardtest3.c -g dominion.c rngs.o $(CFLAGS)
+	./cardtest3 >> unittestresults.out
+	gcov cardtest3.c dominion.c -b >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o cardtest4 cardtest4.c -g dominion.c rngs.o $(CFLAGS)
+	./cardtest4 >> unittestresults.out
+	gcov cardtest4.c dominion.c -b >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out
